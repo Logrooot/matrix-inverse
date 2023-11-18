@@ -1,0 +1,31 @@
+module matrix_inverse_tb;
+ // Parameters
+  parameter N = 3;
+  // Signals
+  logic signed [N-1:0][N-1:0] A;
+  logic signed [N-1:0][N-1:0] B;
+  matrix_inverse #(N) uut (
+    .A(A), .B(B)  );
+  initial begin
+    A[0][0] = 1; A[0][1] = 1; A[0][2] = 1;
+    A[1][0] = 1; A[1][1] = 0; A[1][2] = 1;
+    A[2][0] = 0; A[2][1] = 1; A[2][2] = 1;
+    $display("Input Matrix A:");
+    for (int i = 0; i < N; i++) begin
+      $write("  ");
+      for (int j = 0; j < N; j++) begin
+        $write("%0d ", A[i][j]);
+      end
+      $display(""); 
+    end
+    $display("\nInverse Matrix B:");
+    for (int i = 0; i < N; i++) begin
+      $write("  ");
+      for (int j = 0; j < N; j++) begin
+        $write("%0d ", B[i][j]);
+      end
+      $display(""); 
+    end
+    $finish;
+  End
+endmodule
